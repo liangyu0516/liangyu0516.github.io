@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite-url/tags/index.html</loc>
+    
+    <lastmod>2024-01-11</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/en/StudyAbroadPreparation/</loc>
     
     <lastmod>2024-01-11</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite-url/tw/StudyAbroadPreparation/</loc>
     
     <lastmod>2024-01-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite-url/tags/index.html</loc>
-    
-    <lastmod>2023-11-21</lastmod>
     
   </url>
   
