@@ -139,7 +139,7 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/en/AWSS3CORSSettingsTutorial/">
+  <link rel="canonical" href="http://yoursite-url/en/aws-s3-cors-settings-tutorial/">
   <title>
     
       AWS S3 CORS Settings Tutorial - Cindy Chen
@@ -378,7 +378,7 @@
               
             </div>
             <h1>AWS S3 CORS Settings Tutorial</h1>
-            <h2 class="subheading">The Gears of Life are About to Turn...</h2>
+            <h2 class="subheading">Optimizing Access Control for Your Application</h2>
             <span class="meta">
               Posted by Cindy Chen on
               2024-07-23
@@ -389,11 +389,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">3</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">219</span> In Total
+              Words <span class="post-count">526</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -455,12 +455,39 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <blockquote>
-<p>Every effort will reap its rewards at some point.</p>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>When we use AWS S3 to store objects that might be used in our application, we can use the S3 console, AWS CLI, or AWS SDK to generate presigned URLs that can be used to share objects between clients. For more details, see: <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html">Sharing objects with presigned URLs</a>.</p>
+<p>If we want our application to access resources in S3 using presigned URLs, we have to define the CORS policy in S3 to ensure that our resources are accessed based on security and defined rules. This article will cover the steps to set the CORS policy of an S3 bucket, provide example settings, discuss use cases, and outline some limitations.</p>
+<h2 id="How-to-Set-the-CORS-Policy"><a href="#How-to-Set-the-CORS-Policy" class="headerlink" title="How to Set the CORS Policy"></a>How to Set the CORS Policy</h2><ol>
+<li>Go to Amazon S3</li>
+<li>Select the bucket</li>
+<li>Click <code>Permissions</code></li>
+<li>Scroll to the bottom to the <code>Cross-origin resource sharing (CORS)</code> section</li>
+<li>Click <code>Edit</code></li>
+<li>Enter the desired CORS configuration in JSON format. For example: <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;AllowedHeaders&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;*&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;AllowedMethods&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;GET&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;AllowedOrigins&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;*&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;ExposeHeaders&quot;</span>: []</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note: The above setting allows unrestricted access, meaning there are no restrictions on who can access the S3 resources, which is not recommended.</p>
 </blockquote>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>During the summer vacation of my freshman year, I joined a study tour to the University of San Diego (USD) in California for a summer camp. There, I learned alongside students from around the world, experienced the joy of summer sun and beaches, and planted the desire to return someday.</p>
-<p>As my junior year came to an end and the decision about post-graduation plans loomed, the options were either finding a job or pursuing graduate studies. I recalled my initial desire to return to the United States. By then, it was almost the summer before my senior year. While most people planning to study abroad had started test preparations and application processes since their junior year, and some even paved the way for studying abroad from the beginning of university, time was tight for me. Despite the challenge, I sought advice, discussed with individuals experienced in studying abroad, explored various study abroad resources, and watched study abroad videos. Interestingly, the decisive moment came when I was watching a video of Hook having a Taiwan vs. USA Burger King showdown. His friend, who was studying in Dallas, had tried Burger King there. After watching that, I decided: I want to study in the USA and eat American Burger King.</p>
-<h2 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h2><h2 id="Limitation"><a href="#Limitation" class="headerlink" title="Limitation"></a>Limitation</h2><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+</li>
+<li>Click <code>Save changes</code></li>
+</ol>
+<h2 id="CORS-Configuration"><a href="#CORS-Configuration" class="headerlink" title="CORS Configuration"></a>CORS Configuration</h2><p>There are 5 elements in CORS configuration:</p>
+<ol>
+<li><code>AllowedMethods</code>: Defines which HTTP request methods are allowed. The available values are <code>GET</code>, <code>PUT</code>, <code>POST</code>, <code>DELETE</code>, and <code>HEAD</code>, and <code>*</code> cannot be used to allow all methods.</li>
+<li><code>AllowedOrigins</code>: Defines the origins that are permitted to make cross-origin requests. The <code>*</code> wildcard can be used to allow requests from any origin, or be used to cover multiple subdomains, such as <code>http://*.example.com</code>, but only one wildcard character is supported in an origin string.</li>
+<li><code>AllowedHeaders</code>: Defines which headers are allowed in a preflight request. The <code>*</code> wildcard can be used to allow all headers in a request or to cover multiple headers, such as <code>x-amz-*</code>. Only one wildcard character is supported in a single header string.</li>
+<li><code>ExposeHeaders</code>: Defines which headers clients are allowed to access in the response. If this element is not specified, S3 will automatically add an empty array <code>[]</code> to it.</li>
+<li><code>MaxAgeSeconds</code>: Defines the number of seconds that a browser can cache the response for a preflight request.</li>
+</ol>
+<h2 id="Limitations-on-Localhost"><a href="#Limitations-on-Localhost" class="headerlink" title="Limitations on Localhost"></a>Limitations on Localhost</h2><p>When running applications in a local development environment, we might need to add <code>http://localhost</code> to <code>AllowedOrigins</code>. However, this can lead to a problem where any application running on localhost can access S3 resources if it obtains a presigned URL, including potentially malicious or unauthorized applications. S3’s CORS policy cannot distinguish between different applications running on localhost.</p>
+<p>To mitigate this issue, consider the following two approaches:</p>
+<ol>
+<li><strong>Set an Expiry Time for Presigned URLs</strong>: When generating presigned URLs, set an appropriate expiration time. This method limits the time during which a URL is valid but does not fully resolve the issue of unauthorized access.</li>
+<li><strong>Implement a Backend Server</strong>: Create your own backend server that requires a custom header from the frontend. The backend can authenticate the request, and if valid, retrieve the resource from S3 and respond to the frontend. This adds an additional layer of security by ensuring that only authenticated requests can access S3 resources.</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManageCorsUsing.html">Elements of a CORS configuration</a></li>
+</ul>
+
 
         <hr>
         <!-- Pager -->
@@ -517,7 +544,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=AWS S3 CORS Settings Tutorial&body=Hi,I found this website and thought you might like it http://yoursite-url/en/AWSS3CORSSettingsTutorial/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=AWS S3 CORS Settings Tutorial&body=Hi,I found this website and thought you might like it http://yoursite-url/en/aws-s3-cors-settings-tutorial/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -605,7 +632,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Introduction"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Introduction</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Parameters"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Parameters</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Limitation"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Limitation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Conclusion"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Conclusion</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Reference"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Reference</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Introduction"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Introduction</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#How-to-Set-the-CORS-Policy"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">How to Set the CORS Policy</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#CORS-Configuration"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">CORS Configuration</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Limitations-on-Localhost"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Limitations on Localhost</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Reference"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Reference</span></a></li></ol>
         
         </div>
       </aside>
@@ -1192,5 +1219,20 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

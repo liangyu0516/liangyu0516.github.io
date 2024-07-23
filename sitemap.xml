@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite-url/en/AWSS3CORSSettingsTutorial/</loc>
+    <loc>http://yoursite-url/en/aws-s3-cors-settings-tutorial/</loc>
     
     <lastmod>2024-07-23</lastmod>
     
@@ -53,7 +53,7 @@
 
   <url>
     <loc>http://yoursite-url/</loc>
-    <lastmod>2024-07-22</lastmod>
+    <lastmod>2024-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -61,14 +61,14 @@
   
   <url>
     <loc>http://yoursite-url/tags/Study-Abroad/</loc>
-    <lastmod>2024-07-22</lastmod>
+    <lastmod>2024-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/Programming/</loc>
-    <lastmod>2024-07-22</lastmod>
+    <lastmod>2024-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -77,14 +77,14 @@
   
   <url>
     <loc>http://yoursite-url/categories/Study-Abroad/</loc>
-    <lastmod>2024-07-22</lastmod>
+    <lastmod>2024-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/categories/Programming/</loc>
-    <lastmod>2024-07-22</lastmod>
+    <lastmod>2024-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
